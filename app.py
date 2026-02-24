@@ -3,20 +3,25 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import os
 
+# Inicializa la app
 app = Flask(__name__)
 
+# Configuración de la base de datos desde la variable de entorno
 DATABASE_URL = os.environ.get("DATABASE_URL")
 app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
+# Inicializa SQLAlchemy
 db = SQLAlchemy(app)
 
+# Modelo de datos
 class SensorData(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     humedad = db.Column(db.Float)
     temperatura = db.Column(db.Float)
     fecha = db.Column(db.DateTime, default=datetime.utcnow)
 
+# Rutas de la API
 @app.route("/")
 def home():
     return "Servidor IoT funcionando"
@@ -48,5 +53,9 @@ def obtener_datos():
         } for d in datos
     ])
 
+# Ejecuta la app
 if __name__ == "__main__":
-    app.run()
+    # Crea las tablas si no existen
+    with app.app_context():
+        db.create_all()
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
