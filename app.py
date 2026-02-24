@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import os
+import pytz
 
 # Inicializa la app
 app = Flask(__name__)
@@ -30,10 +31,13 @@ def home():
 def recibir_datos():
     data = request.json
 
+    zona_honduras = pytz.timezone("America/Tegucigalpa")
+
     nuevo = SensorData(
         humedad=data["humedad"],
         temperatura=data["temperatura"],
-        fecha=datetime.utcnow()
+        # fecha=datetime.utcnow()
+        fecha=datetime.now(zona_honduras)
     )
 
     db.session.add(nuevo)
