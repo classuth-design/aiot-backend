@@ -1,1 +1,1 @@
-web: gunicorn app:aiotapp
+web: gunicorn app:aiot_app
