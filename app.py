@@ -23,9 +23,13 @@ class SensorData(db.Model):
     fecha = db.Column(db.DateTime, default=datetime.utcnow)
 
 # Rutas de la API
+# @app.route("/")
+# def home():
+#    return "Servidor IoT funcionando"
+
 @app.route("/")
 def home():
-    return "Servidor IoT funcionando"
+    return "AIoT Backend OK"
 
 @app.route("/api/data", methods=["POST"])
 def recibir_datos():
