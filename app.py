@@ -5,7 +5,7 @@ import os
 import pytz
 
 # Inicializa la app
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates", static_folder="static")
 
 # Configuración de la base de datos desde la variable de entorno
 DATABASE_URL = os.environ.get("DATABASE_URL")
@@ -30,6 +30,10 @@ class SensorData(db.Model):
 @app.route("/")
 def home():
     return "AIoT Backend OK"
+
+@app.route("/dashboard")
+def dashboard():
+    return render_template("index.html")
 
 @app.route("/api/data", methods=["POST"])
 def recibir_datos():
