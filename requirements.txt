@@ -1,5 +1,8 @@
 flask
 flask_sqlalchemy
+flask_cors
 psycopg2-binary
-pytz
+pandas
+numpy
+scikit-learn
 gunicorn
