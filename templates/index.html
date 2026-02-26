@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>AIoT Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <header>
+        <h1>🌱 AIoT Smart Agriculture</h1>
+    </header>
+
+    <div class="container">
+
+        <!-- GRÁFICOS -->
+        <div class="card">
+            <h2>📊 Temperatura</h2>
+            <canvas id="tempChart"></canvas>
+        </div>
+
+        <div class="card">
+            <h2>💧 Humedad</h2>
+            <canvas id="humChart"></canvas>
+        </div>
+
+        <!-- CONTROL -->
+        <div class="card">
+            <h2>🔘 Control de LEDs</h2>
+
+            <button onclick="toggleLed('led1', true)">Encender LED 1</button>
+            <button onclick="toggleLed('led1', false)">Apagar LED 1</button>
+
+            <button onclick="toggleLed('led2', true)">Encender LED 2</button>
+            <button onclick="toggleLed('led2', false)">Apagar LED 2</button>
+        </div>
+
+        <!-- CÁMARA -->
+        <div class="card">
+            <h2>📷 Cámara en Vivo</h2>
+            <!-- CAMBIA ESTA URL POR TU NGROK O IP PÚBLICA -->
+            <img src="https://TU_URL_NGROK/?action=stream" width="100%">
+        </div>
+
+        <!-- IA -->
+        <div class="card">
+            <h2>🤖 Predicción IA</h2>
+            <button onclick="getPrediction()">Obtener Predicción</button>
+            <p id="predictionResult"></p>
+        </div>
+
+    </div>
+
+    <script src="/static/script.js"></script>
+
+</body>
+</html>
